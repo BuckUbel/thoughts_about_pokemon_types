@@ -1,0 +1,174 @@
+{
+  "teams": [
+    {
+      "team": [
+        "Feuer",
+        "Eis",
+        "Gift",
+        "Boden",
+        "Psycho",
+        "Gestein"
+      ],
+      "strength": [
+        {
+          "id": 3,
+          "name": "Elektro"
+        },
+        {
+          "id": 6,
+          "name": "Kampf"
+        },
+        {
+          "id": 7,
+          "name": "Gift"
+        },
+        {
+          "id": 17,
+          "name": "Fee"
+        }
+      ],
+      "weakness": []
+    },
+    {
+      "team": [
+        "Eis",
+        "Gift",
+        "Boden",
+        "Käfer",
+        "Gestein",
+        "Drache"
+      ],
+      "strength": [
+        {
+          "id": 1,
+          "name": "Feuer"
+        },
+        {
+          "id": 3,
+          "name": "Elektro"
+        },
+        {
+          "id": 6,
+          "name": "Kampf"
+        },
+        {
+          "id": 7,
+          "name": "Gift"
+        },
+        {
+          "id": 11,
+          "name": "Käfer"
+        },
+        {
+          "id": 17,
+          "name": "Fee"
+        }
+      ],
+      "weakness": []
+    },
+    {
+      "team": [
+        "Eis",
+        "Gift",
+        "Boden",
+        "Gestein",
+        "Drache",
+        "Stahl"
+      ],
+      "strength": [
+        {
+          "id": 1,
+          "name": "Feuer"
+        },
+        {
+          "id": 3,
+          "name": "Elektro"
+        },
+        {
+          "id": 6,
+          "name": "Kampf"
+        },
+        {
+          "id": 7,
+          "name": "Gift"
+        },
+        {
+          "id": 11,
+          "name": "Käfer"
+        },
+        {
+          "id": 17,
+          "name": "Fee"
+        }
+      ],
+      "weakness": []
+    },
+    {
+      "team": [
+        "Pflanze",
+        "Eis",
+        "Gift",
+        "Käfer",
+        "Drache",
+        "Fee"
+      ],
+      "strength": [
+        {
+          "id": 0,
+          "name": "Normal"
+        },
+        {
+          "id": 3,
+          "name": "Elektro"
+        },
+        {
+          "id": 4,
+          "name": "Pflanze"
+        },
+        {
+          "id": 5,
+          "name": "Eis"
+        },
+        {
+          "id": 6,
+          "name": "Kampf"
+        },
+        {
+          "id": 7,
+          "name": "Gift"
+        },
+        {
+          "id": 11,
+          "name": "Käfer"
+        },
+        {
+          "id": 14,
+          "name": "Drache"
+        },
+        {
+          "id": 15,
+          "name": "Unlicht"
+        },
+        {
+          "id": 16,
+          "name": "Stahl"
+        },
+        {
+          "id": 17,
+          "name": "Fee"
+        }
+      ],
+      "weakness": [
+        {
+          "id": 5,
+          "name": "Eis"
+        },
+        {
+          "id": 10,
+          "name": "Psycho"
+        }
+      ]
+    }
+  ]
+}
+
