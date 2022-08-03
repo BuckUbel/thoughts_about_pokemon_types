@@ -1,0 +1,45 @@
+{
+  "typeCombos": [
+    [
+      "Stahl",
+      "Eis",
+      "Boden"
+    ],
+    [
+      "Stahl",
+      "Fee",
+      "Kampf"
+    ],
+    [
+      "Gestein",
+      "Eis",
+      "Boden"
+    ],
+    [
+      "Geist",
+      "Geist",
+      "Geist"
+    ],
+    [
+      "Eis",
+      "Kampf",
+      "Flug"
+    ],
+    [
+      "Gestein",
+      "Kampf",
+      "Flug"
+    ],
+    [
+      "Psycho",
+      "Unlicht",
+      "Kampf"
+    ],
+    [
+      "Drache",
+      "Drache",
+      "Drache"
+    ]
+  ]
+}
+
