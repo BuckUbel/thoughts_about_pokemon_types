@@ -1,47 +1,13 @@
 import {makeArrayUnique} from "./helper/default";
-import {names as pTypeNames, chartMap as pTypeChartMap} from "./data/data.json";
+import {names as pTypeNames} from "./data/data.json";
 import {PTeam, PType, PTypeContent} from "./types/PTypeTypes";
+import {PTypeContents, PTypeContentsDef} from "./data/prepareData";
 
 function getAllPTypes(): PType[] {
   return pTypeNames.map((name, id) => {
     return {id, name}
   })
 }
-
-const pTypeContents: PTypeContent[] = pTypeChartMap.map((pTypeChart, pTypeChartIndex): PTypeContent => {
-
-  let atk = 0;
-  let def = 0;
-  let value = 0;
-  const strengths: PType[] = [];
-  const weaknesses: PType[] = [];
-
-  pTypeChart.forEach((typeChartValue, typeChartValueIndex) => {
-    atk = atk + typeChartValue;
-    if (typeChartValue > 1) {
-      strengths.push({id: typeChartValueIndex, name: pTypeNames[typeChartValueIndex]});
-    }
-    if (typeChartValue < 1) {
-      weaknesses.push({id: typeChartValueIndex, name: pTypeNames[typeChartValueIndex]});
-    }
-  });
-
-  pTypeChartMap.forEach((pTypeChart2) => {
-    def = def + pTypeChart2[pTypeChartIndex];
-  });
-
-  value = atk - def;
-
-  return {
-    value: value,
-    id: pTypeChartIndex,
-    name: pTypeNames[pTypeChartIndex],
-    atk: atk,
-    def: def,
-    strengths: strengths,
-    weaknesses: weaknesses,
-  }
-}).sort((a, b) => b.value - a.value);
 
 function testValues(testArray: PTypeContent[]): [PType[], PType[]] {
 
@@ -83,15 +49,16 @@ function testValues(testArray: PTypeContent[]): [PType[], PType[]] {
   // filteredUniqueAllWeaknessIds); // increase
 }
 
-type bestTeamTypeForm = "strongest" | "lessWeakest" | "bestOfBoth"
+type bestTeamTypeFormType = "strongest" | "lessWeakest" | "bestOfBoth"
+type readingFormType = "atk" | "def";
 
-export function calcBestTeamTypes(bestTeamTypeForm:bestTeamTypeForm = "bestOfBoth") {
+export function calcBestTeamTypes(bestTeamTypeForm: bestTeamTypeFormType = "bestOfBoth", readingForm: readingFormType = "def") {
 
 // TODO: Improve algorithm to use not only >1 and <1 - use the factor as real value as *
 // TODO: Improve algorithm to check double types
 // TODO: Improve algorithm with the most common types
 // TODO: Improve algorithm to display the best results with same values (same strengthLength and weaknessLength
-
+  console.log("Calc...")
   let resultChange = 0;
   const myResults: PTeam[] = [];
   let bestResult: PTeam = {
@@ -106,7 +73,13 @@ export function calcBestTeamTypes(bestTeamTypeForm:bestTeamTypeForm = "bestOfBot
         for (let a4 = a3; a4 < pTypeNames.length; a4++) {
           for (let a5 = a4; a5 < pTypeNames.length; a5++) {
             for (let a6 = a5; a6 < pTypeNames.length; a6++) {
-              let testArray: PTypeContent[] = Object.assign([] as PTypeContent[], [pTypeContents[a1], pTypeContents[a2], pTypeContents[a3], pTypeContents[a4], pTypeContents[a5], pTypeContents[a6]]);
+              let testArray: PTypeContent[] = []
+              if (readingForm === "def") {
+                testArray = Object.assign([] as PTypeContent[], [PTypeContentsDef[a1], PTypeContentsDef[a2], PTypeContentsDef[a3], PTypeContentsDef[a4], PTypeContentsDef[a5], PTypeContentsDef[a6]]);
+              }
+              if (readingForm === "atk") {
+                testArray = Object.assign([] as PTypeContent[], [PTypeContents[a1], PTypeContents[a2], PTypeContents[a3], PTypeContents[a4], PTypeContents[a5], PTypeContents[a6]]);
+              }
               const stepResult = testValues(testArray);
               const stepStrength = stepResult[0].length
               const stepWeakness = stepResult[1].length
@@ -122,10 +95,10 @@ export function calcBestTeamTypes(bestTeamTypeForm:bestTeamTypeForm = "bestOfBot
                   weakness: stepResult[1],
                 };
                 myResults.push(bestResult);
-                console.log("Change: ", resultChange);
-                console.log("Team: ", bestResult.team);
-                console.log("Strength: ", bestResult.strength.length);
-                console.log("Weakness: ", bestResult.weakness.length);
+                // console.log("Change: ", resultChange);
+                // console.log("Team: ", bestResult.team);
+                // console.log("Strength: ", bestResult.strength.length);
+                // console.log("Weakness: ", bestResult.weakness.length);
               }
             }
           }
