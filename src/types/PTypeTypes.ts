@@ -16,6 +16,9 @@ export interface PTypeContent extends PType {
 
 export interface PTeam {
   team: string[],
+  teamIds: number[],
+  atk:number,
+  def:number,
   strength: PType[],
   weakness: PType[],
 }

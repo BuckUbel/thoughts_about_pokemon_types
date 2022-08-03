@@ -1,7 +1,7 @@
 import {makeArrayUnique} from "./helper/default";
 import {names as pTypeNames} from "./data/data.json";
 import {PTeam, PType, PTypeContent} from "./types/PTypeTypes";
-import {PTypeContents, PTypeContentsDef} from "./data/prepareData";
+import {PTypeContentIdMap, PTypeContents, PTypeContentsDef} from "./data/prepareData";
 
 function getAllPTypes(): PType[] {
   return pTypeNames.map((name, id) => {
@@ -63,6 +63,9 @@ export function calcBestTeamTypes(bestTeamTypeForm: bestTeamTypeFormType = "best
   const myResults: PTeam[] = [];
   let bestResult: PTeam = {
     team: [],
+    teamIds: [],
+    atk:0,
+    def:0,
     strength: [],
     weakness: getAllPTypes()
   };
@@ -91,6 +94,9 @@ export function calcBestTeamTypes(bestTeamTypeForm: bestTeamTypeFormType = "best
                 resultChange = resultChange + 1;
                 bestResult = {
                   team: [pTypeNames[a1], pTypeNames[a2], pTypeNames[a3], pTypeNames[a4], pTypeNames[a5], pTypeNames[a6]],
+                  teamIds: [a1, a2, a3, a4, a5, a6],
+                  atk: PTypeContentIdMap[a1].atk+PTypeContentIdMap[a2].atk+PTypeContentIdMap[a3].atk+PTypeContentIdMap[a4].atk+PTypeContentIdMap[a5].atk+PTypeContentIdMap[a6].atk,
+                  def: PTypeContentIdMap[a1].def+PTypeContentIdMap[a2].def+PTypeContentIdMap[a3].def+PTypeContentIdMap[a4].def+PTypeContentIdMap[a5].def+PTypeContentIdMap[a6].def,
                   strength: stepResult[0],
                   weakness: stepResult[1],
                 };
@@ -106,8 +112,8 @@ export function calcBestTeamTypes(bestTeamTypeForm: bestTeamTypeFormType = "best
       }
     }
   }
-
-  console.log(myResults.sort((a, b) => {
+  const finalTeam = myResults.sort((a, b) => {
     return b.weakness.length - a.weakness.length
-  })[myResults.length - 2]);
+  })[myResults.length - 2];
+  console.log(finalTeam);
 }

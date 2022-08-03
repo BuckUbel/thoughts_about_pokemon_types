@@ -1,5 +1,5 @@
 import {calcBestTeamTypes} from "./bestTeam";
 import {calcPossibleStarterTypes} from "./starterTypes";
 
-// calcBestTeamTypes("lessWeakest","def");
-calcPossibleStarterTypes()
+calcBestTeamTypes("lessWeakest","def");
+// calcPossibleStarterTypes(true)
